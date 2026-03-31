@@ -34,4 +34,7 @@ class JsonStorage:
         try:
             with open(self._file_path, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=2)
-        except
+        except TypeError as e:
+            raise ValueError(f"Data is not JSON serializable: {e}") from e
+        except OSError as e:
+            raise OSError(f"Failed to write file: {e}") from e
