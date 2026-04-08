@@ -5,7 +5,10 @@ from typing import Dict, List
 
 class JsonStorage:
     def __init__(self, file_path: str):
-        self.file_path = file_path
+        if not file_path:
+            self.file_path = "data/db.json"
+        else:
+            self.file_path = file_path
 
     @property
     def file_path(self):
@@ -30,7 +33,7 @@ class JsonStorage:
         except json.JSONDecodeError as e:
             raise ValueError(f"Invalid JSON: {e}")
 
-    def save(self, data: Dict[str, str]):
+    def save(self, data: List[Dict[str, str]]):
         try:
             with open(self._file_path, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=2)
