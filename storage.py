@@ -4,7 +4,7 @@ from typing import Dict, List
 
 
 class JsonStorage:
-    def __init__(self, file_path: str):
+    def __init__(self, file_path: str | None = None):
         if not file_path:
             self.file_path = "data/db.json"
         else:

@@ -1,15 +1,15 @@
+import argparse
+
 from models import User
+from orm import ORM
 from storage import JsonStorage
 
 if __name__ == "__main__":
-    # user = User()
-
-    # print(user.to_dict())
-
-    storage = JsonStorage("data/db.json")
-
-    # storage.save(user.to_dict())
-
-    new_user = storage.load()
-
-    print(new_user)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-db", help="specify storage file")
+    args = parser.parse_args()
+    storage = JsonStorage(args.db)
+    orm = ORM(storage)
+    user = User()
+    orm.create(user)
+    print(orm.count())

@@ -1,7 +1,8 @@
+from operator import itemgetter
 from typing import List
 from uuid import UUID
 
-from models import BaseModel, User
+from models import User
 from storage import JsonStorage
 
 
@@ -60,11 +61,21 @@ class ORM:
                 data.remove(record)
                 break
 
-    def filter(self, field: str, value: str) -> List[User]:
+    def filter_by(self, field: str, value: str) -> List[User]:
         data = self.storage.load()
         filtered_list = []
         for record in data:
             if record[field] == value:
                 filtered_list.append(record)
-
         return filtered_list
+
+    def sort_by(self, field: str, reverse: bool = False) -> List[User]:
+        data = self.storage.load()
+        sorted_data = sorted(data, key=itemgetter(field), reverse=reverse)
+        return [User.from_dict(record) for record in sorted_data]
+
+    def count(self) -> int:
+        return len(self.storage.load())
+
+    def count_where(self, field: str, value: str) -> int:
+        return len(self.filter_by(field, value))
