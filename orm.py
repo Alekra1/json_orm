@@ -60,6 +60,7 @@ class ORM:
             if record["id"] == str(id):
                 data.remove(record)
                 break
+        self.storage.save(data)
 
     def filter_by(self, field: str, value: str) -> List[User]:
         data = self.storage.load()

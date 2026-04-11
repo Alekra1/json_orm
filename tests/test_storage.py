@@ -96,3 +96,7 @@ class TestStorage(unittest.TestCase):
     def test_init_with_invalid_path_type(self):
         with self.assertRaises(ValueError):
             storage.JsonStorage(12345)
+
+
+if __name__ == "__main__":
+    unittest.main()

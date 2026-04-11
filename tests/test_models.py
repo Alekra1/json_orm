@@ -77,3 +77,7 @@ class TestModels(unittest.TestCase):
 
         self.assertTrue(repr(user).startswith("User("))
         self.assertTrue(repr(admin).startswith("AdminUser("))
+
+
+if __name__ == "__main__":
+    unittest.main()
