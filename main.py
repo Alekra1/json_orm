@@ -1,9 +1,20 @@
 import argparse
+import os
 from uuid import UUID
 
 from models import AdminUser, User
 from orm import ORM
 from storage import JsonStorage
+
+
+def clear():
+    os.system("clear")
+
+
+def pause():
+    input("\nPress Enter to go back...")
+    clear()
+
 
 MENU = """
 1.  Add user
@@ -59,12 +70,14 @@ def handle_add_admin(orm):
 
 def handle_list_all(orm):
     records = orm.get_all()
+    clear()
     if not records:
         print("No records found.")
-        return
-    for record in records:
-        print_record(record)
-        print()
+    else:
+        for record in records:
+            print_record(record)
+            print()
+    pause()
 
 
 def handle_get_by_id(orm):
@@ -72,10 +85,12 @@ def handle_get_by_id(orm):
     if record_id is None:
         return
     record = orm.get_by_id(record_id)
+    clear()
     if record is None:
         print("Record not found.")
     else:
         print_record(record)
+    pause()
 
 
 def handle_update(orm):
@@ -120,14 +135,16 @@ def handle_filter(orm):
     except KeyError:
         print(f"Field '{field}' not found in records.")
         return
+    clear()
     if not results:
         print("No matching records.")
-        return
-    for record in results:
-        print(f"  ID:       {record.get('id')}")
-        print(f"  Username: {record.get('username')}")
-        print(f"  Email:    {record.get('email')}")
-        print()
+    else:
+        for record in results:
+            print(f"  ID:       {record.get('id')}")
+            print(f"  Username: {record.get('username')}")
+            print(f"  Email:    {record.get('email')}")
+            print()
+    pause()
 
 
 def handle_sort(orm):
@@ -139,18 +156,21 @@ def handle_sort(orm):
     except KeyError:
         print(f"Field '{field}' not found in records.")
         return
+    clear()
     if not results:
         print("No records.")
-        return
-    for record in results:
-        print_record(record)
-        print()
+    else:
+        for record in results:
+            print_record(record)
+            print()
+    pause()
 
 
 def handle_count(orm):
     total = orm.count()
-    print(f"Total records: {total}")
     answer = input("Count with a condition? [y/n]: ").strip().lower()
+    clear()
+    print(f"Total records: {total}")
     if answer == "y":
         field = input("Field: ")
         value = input("Value: ")
@@ -159,6 +179,7 @@ def handle_count(orm):
             print(f"Records where {field}={value!r}: {count}")
         except KeyError:
             print(f"Field '{field}' not found.")
+    pause()
 
 
 HANDLERS = {
