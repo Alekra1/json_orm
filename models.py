@@ -6,6 +6,13 @@ from uuid import UUID, uuid4
 
 
 class BaseModel(ABC):
+    """Abstract base class for all ORM models.
+
+    Attributes:
+        id: Auto-generated UUID.
+        created_at: Timestamp of creation.
+    """
+
     def __init__(self):
         self._id: UUID = uuid4()
         self._created_at: datetime = datetime.now()
@@ -20,6 +27,7 @@ class BaseModel(ABC):
 
     @abstractmethod
     def to_dict(self) -> Dict[str, str]:
+        """Serialize the model to a dictionary."""
         return {
             "id": str(self._id),
             "created_at": self._created_at.strftime("%d-%m-%Y, %H:%M:%S"),
@@ -27,7 +35,9 @@ class BaseModel(ABC):
 
     @classmethod
     @abstractmethod
-    def from_dict(cls, data: Dict[str, str]) -> Self: ...
+    def from_dict(cls, data: Dict[str, str]) -> Self:
+        """Deserialize a model instance from a dictionary."""
+        ...
 
     def __eq__(self, other):
         if not isinstance(other, BaseModel):
@@ -41,6 +51,13 @@ class BaseModel(ABC):
 
 
 class User(BaseModel):
+    """A regular user with read/write permissions.
+
+    Args:
+        username: Must be at least 3 characters.
+        email: Must be a valid email address.
+    """
+
     def __init__(
         self, username: str = "username", email: str = "email@email.com"
     ):
@@ -97,6 +114,8 @@ class User(BaseModel):
 
 
 class AdminUser(User):
+    """A user with extended admin permissions (delete, manage_users)."""
+
     def get_permissions(self) -> List[str]:
         return [*super().get_permissions(), "delete", "manage_users"]
 

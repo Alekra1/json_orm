@@ -7,6 +7,12 @@ from storage import JsonStorage
 
 
 class ORM:
+    """Simple ORM that maps User objects to a JSON storage backend.
+
+    Args:
+        storage: A configured ``JsonStorage`` instance with a file path set.
+    """
+
     def __init__(self, storage: JsonStorage):
         self.storage = storage
 
@@ -25,12 +31,14 @@ class ORM:
         self._storage = storage
 
     def create(self, model: User):
+        """Append a new record to storage."""
         dictionary_model = model.to_dict()
         data = self.storage.load()
         data.append(dictionary_model)
         self.storage.save(data)
 
     def get_all(self) -> List[User]:
+        """Return all records as User instances."""
         data = self.storage.load()
         models = []
         for model in data:
@@ -38,6 +46,7 @@ class ORM:
         return models
 
     def get_by_id(self, id: UUID) -> User | None:
+        """Return the record matching ``id``, or ``None`` if not found."""
         data = self.storage.load()
         for record in data:
             if record["id"] == str(id):
@@ -45,6 +54,7 @@ class ORM:
         return None
 
     def update(self, id: UUID, updated_record: User):
+        """Overwrite non-protected fields of the record with ``id``."""
         data = self.storage.load()
         updated_dictionary = updated_record.to_dict()
         protected_fields = {"id", "created_at"}
@@ -57,6 +67,7 @@ class ORM:
         self.storage.save(data)
 
     def delete(self, id: UUID):
+        """Remove the record with ``id`` from storage."""
         data = self.storage.load()
         for record in data:
             if record["id"] == str(id):
@@ -65,6 +76,7 @@ class ORM:
         self.storage.save(data)
 
     def filter_by(self, field: str, value: str) -> List[User]:
+        """Return raw dicts where ``field`` equals ``value``."""
         data = self.storage.load()
         filtered_list = []
         for record in data:
@@ -73,12 +85,20 @@ class ORM:
         return filtered_list
 
     def sort_by(self, field: str, reverse: bool = False) -> List[User]:
+        """Return all records sorted by ``field``.
+
+        Args:
+            field: Record key to sort on.
+            reverse: If ``True``, sort descending.
+        """
         data = self.storage.load()
         sorted_data = sorted(data, key=itemgetter(field), reverse=reverse)
         return [User.from_dict(record) for record in sorted_data]
 
     def count(self) -> int:
+        """Return the total number of records."""
         return len(self.storage.load())
 
     def count_where(self, field: str, value: str) -> int:
+        """Return the number of records where ``field`` equals ``value``."""
         return len(self.filter_by(field, value))

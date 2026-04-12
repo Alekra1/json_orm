@@ -8,10 +8,12 @@ from storage import JsonStorage
 
 
 def clear():
+    """Clear the terminal screen."""
     os.system("clear")
 
 
 def pause():
+    """Wait for the user to press Enter, then clear the screen."""
     input("\nPress Enter to go back...")
     clear()
 
@@ -31,6 +33,7 @@ MENU = """
 
 
 def print_record(record):
+    """Print a single User record in a readable format."""
     print(f"  ID:         {record.id}")
     print(f"  Type:       {type(record).__name__}")
     print(f"  Username:   {record.username}")
@@ -39,6 +42,7 @@ def print_record(record):
 
 
 def parse_uuid(raw):
+    """Parse a UUID string, printing an error and returning ``None`` on failure."""
     try:
         return UUID(raw)
     except ValueError:
@@ -196,6 +200,7 @@ HANDLERS = {
 
 
 def run(orm):
+    """Run the interactive CLI menu loop until the user chooses to exit."""
     while True:
         print(MENU)
         try:

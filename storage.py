@@ -4,6 +4,12 @@ from typing import Dict, List
 
 
 class JsonStorage:
+    """Persists a list of records to a JSON file.
+
+    Args:
+        file_path: Path to the JSON file. Defaults to ``data/db.json``.
+    """
+
     def __init__(self, file_path: str | None = None):
         if not file_path:
             self.file_path = "data/db.json"
