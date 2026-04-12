@@ -35,13 +35,6 @@
     "email": "eve@example.com"
   },
   {
-    "id": "b8ac5992-c2fe-4931-9405-298d809e3347",
-    "created_at": "12-04-2026, 17:38:37",
-    "type": "User",
-    "username": "frank",
-    "email": "frank@example.com"
-  },
-  {
     "id": "6c16be27-185e-4cdc-8d0e-6e9895badb58",
     "created_at": "12-04-2026, 17:38:37",
     "type": "User",
@@ -68,5 +61,19 @@
     "type": "AdminUser",
     "username": "judy",
     "email": "judy@example.com"
+  },
+  {
+    "id": "6352bc2c-083c-4353-b0b7-ce88e7d7c3c2",
+    "created_at": "12-04-2026, 18:02:26",
+    "type": "User",
+    "username": "test_username",
+    "email": "email@email.com"
+  },
+  {
+    "id": "ab4e6f35-1214-42e5-9f66-3ddff8f06699",
+    "created_at": "12-04-2026, 18:02:56",
+    "type": "AdminUser",
+    "username": "admin",
+    "email": "admin@email.com"
   }
 ]
