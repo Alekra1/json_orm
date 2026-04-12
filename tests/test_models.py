@@ -13,21 +13,43 @@ class TestModels(unittest.TestCase):
         expected_dict = {
             "id": str(user.id),
             "created_at": user.created_at.strftime("%d-%m-%Y, %H:%M:%S"),
+            "type": "User",
             "username": "test_user",
             "email": "test@email.com",
         }
 
         self.assertEqual(dict_user, expected_dict)
 
+    def test_to_dict_admin(self):
+        admin = models.AdminUser("admin_user", "admin@email.com")
+        self.assertEqual(admin.to_dict()["type"], "AdminUser")
+
     def test_from_dict(self):
+        data = {
+            "id": "12345678-1234-5678-1234-567812345678",
+            "created_at": "25-12-2025, 10:30:00",
+            "type": "User",
+            "username": "test_user",
+            "email": "test@email.com",
+        }
+        user_from_dict = models.User.from_dict(data)
+        self.assertEqual(user_from_dict.to_dict(), data)
+
+    def test_from_dict_returns_admin(self):
+        admin = models.AdminUser("admin_user", "admin@email.com")
+        data = admin.to_dict()
+        restored = models.User.from_dict(data)
+        self.assertIsInstance(restored, models.AdminUser)
+
+    def test_from_dict_no_type_returns_user(self):
         data = {
             "id": "12345678-1234-5678-1234-567812345678",
             "created_at": "25-12-2025, 10:30:00",
             "username": "test_user",
             "email": "test@email.com",
         }
-        user_from_dict = models.User.from_dict(data)
-        self.assertEqual(user_from_dict.to_dict(), data)
+        restored = models.User.from_dict(data)
+        self.assertIsInstance(restored, models.User)
 
     def test_eq_same_user(self):
         user = models.User()

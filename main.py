@@ -29,7 +29,8 @@ MENU = """
 7.  Filter records
 8.  Sort records
 9.  Count records
-10. Exit
+10. Get permissions
+11. Exit
 """
 
 
@@ -188,6 +189,17 @@ def handle_count(orm):
     pause()
 
 
+def handle_permissions(orm):
+    record_id = parse_uuid(input("Record ID: "))
+    if record_id is None:
+        return
+    record = orm.get_by_id(record_id)
+    if record is None:
+        print("Record not found.")
+        return
+    print(f"Permissions: {record.get_permissions()}")
+
+
 HANDLERS = {
     1: handle_add_user,
     2: handle_add_admin,
@@ -198,6 +210,7 @@ HANDLERS = {
     7: handle_filter,
     8: handle_sort,
     9: handle_count,
+    10: handle_permissions,
 }
 
 
@@ -211,7 +224,7 @@ def run(orm):
             print("Please enter a number.")
             continue
 
-        if choice == 10:
+        if choice == 11:
             print("Goodbye!")
             break
 

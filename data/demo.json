@@ -1,0 +1,72 @@
+[
+  {
+    "id": "b6b973de-b535-4798-a03d-b02162953663",
+    "created_at": "12-04-2026, 17:38:37",
+    "type": "User",
+    "username": "alice",
+    "email": "alice@example.com"
+  },
+  {
+    "id": "4cf6324b-ccab-4db6-b20c-fb7eab69a00b",
+    "created_at": "12-04-2026, 17:38:37",
+    "type": "User",
+    "username": "bob",
+    "email": "bob@example.com"
+  },
+  {
+    "id": "09894e12-28fd-4195-aa75-4160dc5da241",
+    "created_at": "12-04-2026, 17:38:37",
+    "type": "User",
+    "username": "carol",
+    "email": "carol@example.com"
+  },
+  {
+    "id": "95ca6ab9-1b91-41c0-bd99-1a1ff090e45f",
+    "created_at": "12-04-2026, 17:38:37",
+    "type": "User",
+    "username": "dave",
+    "email": "dave@example.com"
+  },
+  {
+    "id": "bd3167a7-4350-4022-90d7-65983f0a401a",
+    "created_at": "12-04-2026, 17:38:37",
+    "type": "User",
+    "username": "eve",
+    "email": "eve@example.com"
+  },
+  {
+    "id": "b8ac5992-c2fe-4931-9405-298d809e3347",
+    "created_at": "12-04-2026, 17:38:37",
+    "type": "User",
+    "username": "frank",
+    "email": "frank@example.com"
+  },
+  {
+    "id": "6c16be27-185e-4cdc-8d0e-6e9895badb58",
+    "created_at": "12-04-2026, 17:38:37",
+    "type": "User",
+    "username": "grace",
+    "email": "grace@example.com"
+  },
+  {
+    "id": "3f1d8fd9-20aa-4dcf-868f-345f67dae93f",
+    "created_at": "12-04-2026, 17:38:37",
+    "type": "AdminUser",
+    "username": "heidi",
+    "email": "heidi@example.com"
+  },
+  {
+    "id": "647af455-5d17-4eec-b959-e0288cf3f85f",
+    "created_at": "12-04-2026, 17:38:37",
+    "type": "AdminUser",
+    "username": "ivan",
+    "email": "ivan@example.com"
+  },
+  {
+    "id": "4a25d40b-ede7-4df0-9ee8-525d03e98524",
+    "created_at": "12-04-2026, 17:38:37",
+    "type": "AdminUser",
+    "username": "judy",
+    "email": "judy@example.com"
+  }
+]

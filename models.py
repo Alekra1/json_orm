@@ -94,13 +94,16 @@ class User(BaseModel):
     def to_dict(self) -> Dict[str, str]:
         return {
             **super().to_dict(),
+            "type": type(self).__name__,
             "username": self._username,
             "email": self._email,
         }
 
     @classmethod
     def from_dict(cls, data: Dict[str, str]) -> Self:
-        instance = cls(username=data["username"], email=data["email"])
+        from models import AdminUser
+        klass = AdminUser if data.get("type") == "AdminUser" else cls
+        instance = klass(username=data["username"], email=data["email"])
         instance._id = UUID(data["id"])
         instance._created_at = datetime.strptime(
             data["created_at"], "%d-%m-%Y, %H:%M:%S"
