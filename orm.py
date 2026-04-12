@@ -19,7 +19,9 @@ class ORM:
         if not isinstance(storage, JsonStorage):
             raise ValueError(f"Invalid storage: {storage}")
         if not storage.file_path:
-            raise ValueError("You must provide the storage with specified storage file")
+            raise ValueError(
+                "You must provide the storage with specified storage file"
+            )
         self._storage = storage
 
     def create(self, model: User):

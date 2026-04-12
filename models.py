@@ -41,7 +41,9 @@ class BaseModel(ABC):
 
 
 class User(BaseModel):
-    def __init__(self, username: str = "username", email: str = "email@email.com"):
+    def __init__(
+        self, username: str = "username", email: str = "email@email.com"
+    ):
         super().__init__()
         self.username = username
         self.email = email
@@ -72,7 +74,11 @@ class User(BaseModel):
         return ["read", "write"]
 
     def to_dict(self) -> Dict[str, str]:
-        return {**super().to_dict(), "username": self._username, "email": self._email}
+        return {
+            **super().to_dict(),
+            "username": self._username,
+            "email": self._email,
+        }
 
     @classmethod
     def from_dict(cls, data: Dict[str, str]) -> Self:
@@ -84,7 +90,10 @@ class User(BaseModel):
         return instance
 
     def __repr__(self):
-        return f"User({self._id!r}, {self._created_at!r}, {self.username!r}, {self.email!r})"
+        return (
+            f"User({self._id!r}, {self._created_at!r}, "
+            f"{self.username!r}, {self.email!r})"
+        )
 
 
 class AdminUser(User):
@@ -92,4 +101,7 @@ class AdminUser(User):
         return [*super().get_permissions(), "delete", "manage_users"]
 
     def __repr__(self):
-        return f"AdminUser({self._id!r}, {self._created_at!r}, {self.username!r}, {self.email!r})"
+        return (
+            f"AdminUser({self._id!r}, {self._created_at!r}, "
+            f"{self.username!r}, {self.email!r})"
+        )

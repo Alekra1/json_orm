@@ -218,7 +218,9 @@ def run(orm):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="JSON ORM CLI")
-    parser.add_argument("--db", required=True, help="Path to the JSON database file")
+    parser.add_argument(
+        "--db", required=True, help="Path to the JSON database file"
+    )
     args = parser.parse_args()
     storage = JsonStorage(args.db)
     orm = ORM(storage)
