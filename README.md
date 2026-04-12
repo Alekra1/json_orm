@@ -20,6 +20,35 @@ A simple ORM simulator written in Python. It maps Python objects to JSON and sup
 
 ## How to Run
 
+### Using uv (Recommended)
+
+This project is recommended to be run using `uv` (a fast Python package manager).
+
+To run the program:
+```
+uv run main.py --db data/db.json
+```
+
+To run tests:
+```
+uv run python -m unittest
+```
+
+To generate a coverage report:
+```
+uv run coverage run -m unittest && uv run coverage report
+```
+
+### Without uv (Standard Python)
+
+You can also run the project without `uv`, but you need to install the required packages from `pyproject.toml` first.
+
+Install dependencies (it's recommended to use a virtual environment):
+```
+pip install .
+```
+Or install them manually: `pip install coverage flake8`
+
 Run the program:
 ```
 python main.py --db data/db.json
@@ -27,12 +56,12 @@ python main.py --db data/db.json
 
 Run tests:
 ```
-uv run coverage run -m unittest discover
+python -m unittest
 ```
 
 Generate coverage report:
 ```
-uv run coverage report
+coverage run -m unittest && coverage report
 ```
 
 ## Docstring Format
