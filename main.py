@@ -43,7 +43,8 @@ def print_record(record):
 
 
 def parse_uuid(raw):
-    """Parse a UUID string, printing an error and returning ``None`` on failure."""
+    """Parse a UUID string, printing an error
+    and returning ``None`` on failure."""
     try:
         return UUID(raw)
     except ValueError:
