@@ -1,3 +1,4 @@
+# Unit tests for the JsonStorage class.
 import tempfile
 import unittest
 from pathlib import Path

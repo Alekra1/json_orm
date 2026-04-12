@@ -1,3 +1,4 @@
+# ORM class that provides CRUD, filtering, sorting, and counting operations.
 from operator import itemgetter
 from typing import List
 from uuid import UUID

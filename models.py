@@ -1,3 +1,4 @@
+# Models for the JSON ORM: BaseModel, User, and AdminUser classes.
 from abc import ABC, abstractmethod
 from datetime import datetime
 from re import fullmatch

@@ -1,3 +1,4 @@
+# Entry point for the CLI menu. Accepts a --db argument for the storage file.
 import argparse
 import os
 from uuid import UUID

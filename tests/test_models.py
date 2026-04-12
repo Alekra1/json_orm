@@ -1,3 +1,4 @@
+# Unit tests for the models module.
 import unittest
 
 import models
