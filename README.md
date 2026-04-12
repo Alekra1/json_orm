@@ -27,12 +27,12 @@ python main.py --db data/db.json
 
 Run tests:
 ```
-pytest
+uv run coverage run -m unittest discover
 ```
 
 Generate coverage report:
 ```
-coverage run -m pytest && coverage report
+uv run coverage report
 ```
 
 ## Docstring Format
